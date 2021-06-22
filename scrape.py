@@ -35,10 +35,10 @@ for data_id in data_ids:
 assert len(data_ids) == len(park_coordinates) == len(park_names)
 output = {}
 for i in range(len(park_names)):
-    output[data_ids[i]] = {'name':park_names[i], 'coords':park_coordinates[i]}
+    output[data_ids[i]] = {'name':park_names[i], 'coords':park_coordinates[i], 'rcdb_link':"https://rcdb.com/{id}.htm".format(id=data_ids[i])}
 
 output_file = 'park_coordinates.txt'
 print("Writing parks & coordinates to {filename}...".format(filename=output_file))
 with open(output_file, 'a') as f:
     for k,v in output.items():
-        f.write("{name}: {coords}\n".format(name=v['name'], coords=v['coords']))
+        f.write("{name}: {coords} [{link}]\n".format(name=v['name'], coords=v['coords'], link=v['rcdb_link']))
